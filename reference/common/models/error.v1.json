@@ -1,0 +1,18 @@
+{
+  "title": "error",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "number",
+      "description": "Код ошибки"
+    },
+    "message": {
+      "type": "string",
+      "description": "Описание ошибки"
+    }
+  },
+  "required": [
+    "code",
+    "message"
+  ]
+}

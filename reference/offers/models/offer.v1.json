@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "title": "offer",
+  "description": "Структура объекта \"Оффер\"",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Технический ID оффера "
+    },
+    "title": {
+      "type": "string",
+      "description": "Заголовок оффера"
+    },
+    "description": {
+      "type": "string",
+      "description": "Описание оффера"
+    },
+    "image": {
+      "type": "string",
+      "description": "Изображение оффера.\nUUIDv4 название файла"
+    },
+    "imageMobile": {
+      "type": "string",
+      "description": "Изображение оффера для мобильных.\nUUIDv4 название файла"
+    },
+    "endDate": {
+      "type": "number",
+      "description": "Unix-метка времени снятия с публикации"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "image",
+    "imageMobile",
+    "endDate"
+  ],
+  "x-tags": [
+    "Offers"
+  ]
+}

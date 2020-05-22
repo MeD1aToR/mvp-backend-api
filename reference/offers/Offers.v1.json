@@ -1,0 +1,181 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Offers",
+    "version": "1.0",
+    "contact": {
+      "name": "Altirix Systems",
+      "url": "https://altirix.ru"
+    },
+    "license": {
+      "name": "GNU GPLv3"
+    },
+    "description": "Методы взаимодействия с офферами системы OfferLake"
+  },
+  "servers": [
+    {
+      "url": "https://offerlake.ru/api/v1/offers"
+    }
+  ],
+  "paths": {
+    "/list": {
+      "post": {
+        "summary": "Список офферов",
+        "operationId": "post-list",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "./models/offer.v1.json"
+                  }
+                },
+                "examples": {
+                  "Пример": {
+                    "value": [
+                      {
+                        "id": "5ec7cce0dbee7c987283a1a4",
+                        "image": "3b7c4b43-00f3-43cf-8d95-e8fb10ca03f6.png",
+                        "imageMobile": "ec719d97-35f5-422d-a34f-7509e136c46d.png",
+                        "title": "TUI",
+                        "description": "Забронируйте отпуск за <strong style=\"color: rgb(94, 114, 228);\">999 рублей</strong>. Первый взнос 999 рублей только до 30 июля",
+                        "endDate": "1621688297"
+                      },
+                      {
+                        "id": "5ec7ccec9bf1af3ae8af91e8",
+                        "image": "9558c22e-a0d8-44f6-bfb1-880437f8eff9.png",
+                        "imageMobile": "23f17358-97af-4ebf-8a99-1676f9a1ff0b.png",
+                        "title": "Скандинавия",
+                        "description": "Минус <strong style=\"color: rgb(94, 114, 228);\">12 %</strong> от цены на раннее заключение договора на роды.",
+                        "endDate": "1621688297"
+                      },
+                      {
+                        "id": "5ec7ccf8d5081adeebd0589c",
+                        "image": "861484a0-aab8-4d9d-92d8-fa8a0bf3bd29.png",
+                        "imageMobile": "d1a6c4ed-4fe2-4088-b1a4-080cd2c1b6d1.png",
+                        "title": "НЕТОЛОГИЯ",
+                        "description": "Сделайте первый шаг к <strong style=\"color: rgb(94, 114, 228);\">новой профессии</strong>. Дарим промокод на скидку в 20%.",
+                        "endDate": "1621688297"
+                      },
+                      {
+                        "id": "5ec7cd055207ca2125fb1807",
+                        "image": "2cbea9ca-bf5a-4db4-baf1-b0b1c4aa8cb0.png",
+                        "imageMobile": "57b883f6-b111-40cd-90d5-710b9eafdd0d.png",
+                        "title": "Фоксфорд",
+                        "description": "Предпродажа курсов на учебный год! Покупайте со скидкой <strong style=\"color: rgb(94, 114, 228);\">20%</strong> сейчас, а учитесь осенью",
+                        "endDate": "1621688297"
+                      },
+                      {
+                        "id": "5ec7cd0c03b0a6dc6d3b3c1f",
+                        "image": "1ba97022-e734-487a-8fcc-f42f96db6e80.png",
+                        "imageMobile": "49aa3bf2-c98e-48b1-93fe-f5d1a35274ec.png",
+                        "title": "УТКОНОС",
+                        "description": "Акция - Финальные скидки на сотни товаров. Первый продукт в корзине <strong style=\"color: rgb(94, 114, 228);\">БЕСПЛАТНО</strong>",
+                        "endDate": "1621688297"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../common/models/error.v1.json"
+                },
+                "examples": {
+                  "Пример": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Required param 'clientID' not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../common/models/error.v1.json"
+                },
+                "examples": {
+                  "Пример": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Unauthorized partner rejected"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "limit": {
+                    "type": "number",
+                    "default": 8,
+                    "description": "Необходимое кол-во офферов"
+                  },
+                  "offset": {
+                    "type": "number",
+                    "default": 0,
+                    "description": "Отступ от начала списка офферов"
+                  },
+                  "clientID": {
+                    "type": "string",
+                    "description": "ID клиента"
+                  },
+                  "ip": {
+                    "type": "string",
+                    "description": "IP клиента"
+                  },
+                  "userAgent": {
+                    "type": "string",
+                    "description": "User-agent клиента"
+                  }
+                },
+                "required": [
+                  "clientID",
+                  "ip",
+                  "userAgent"
+                ]
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Список офферов"
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "Partner API Key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "API-Access",
+        "description": "API Ключ партнера"
+      }
+    }
+  },
+  "security": [
+    {
+      "Partner API Key": []
+    }
+  ]
+}
